@@ -1,37 +1,57 @@
-import axios, { AxiosResponse } from 'axios';
-export const isOdd = (n: number): boolean => {
-  return !!(n & 1);
-};
+import { Autocompletion } from 'types/autocompletion';
+import { FuzzyCompletion } from 'types/fuzzycompletion';
+import { LEIRecord } from 'types/lei-record';
 
+const baseURL = 'https://api.gleif.org/api/v1/'
 
-class GLEIFAPIWrapper {
-  private baseURL: string;
+export async function getLEIRecordByID(id: string): Promise<LEIRecord> {
+  const url = `${baseURL}lei-records/${id}`;
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: new Headers({
+      'Accept': 'application/vnd.api+json'
+    }),
+  });
 
-  constructor(baseURL: string = 'https://api.gleif.org/api/v1/') {
-    this.baseURL = baseURL;
+  if (!response.ok) {
+    throw new Error(`Request failed with status: ${response.status}`);
   }
 
-  async getLEIRecordByID(id: string): Promise<LEIRecord> {
-    const url = `${this.baseURL}lei-records/${id}`;
-    const response: AxiosResponse<LEIRecord> = await axios.get(url, {
-      headers: { Accept: 'application/vnd.api+json' },
-    });
-    return response.data;
-  }
-
-  async getFuzzyCompletions(field: string, q: string): Promise<any> {
-    const url = `${this.baseURL}fuzzycompletions?field=${field}&q=${q}`;
-    const response: AxiosResponse<any> = await axios.get(url);
-    return response.data;
-  }
-
-  async getAutocompletions(field: string, q: string): Promise<Autocompletion[]> {
-    const url = `${this.baseURL}autocompletions?field=${field}&q=${q}`;
-    const response: AxiosResponse<{ data: Autocompletion[] }> = await axios.get(url, {
-      headers: { Accept: 'application/vnd.api+json' },
-    });
-    return response.data.data;
-  }
+  const data = await response.json();
+  return data;
 }
 
-export default GLEIFAPIWrapper;
+
+export async function getAutocompletions(field: string, q: string): Promise<Autocompletion[]> {
+  const url = `${baseURL}autocompletions?field=${field}&q=${q}`;
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: new Headers({
+      'Accept': 'application/vnd.api+json'
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Request failed with status: ${response.status}`);
+  }
+
+  const data = await response.json();
+  return data.data;
+}
+
+export async function getFuzzyCompletions(field: string, q: string): Promise<FuzzyCompletion[]> {
+  const url = `${baseURL}fuzzycompletions?field=${field}&q=${q}`;
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: new Headers({
+      'Accept': 'application/vnd.api+json'
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Request failed with status: ${response.status}`);
+  }
+
+  const data = await response.json();
+  return data.data;
+}

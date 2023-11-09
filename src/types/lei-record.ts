@@ -1,5 +1,3 @@
-// types/lei-record.ts
-
 export interface LEIRecord {
     type: string;
     id: string;
@@ -8,27 +6,27 @@ export interface LEIRecord {
         entity: {
             legalName: {
                 name: string;
-                language: string | null;
+                language?: string;
             };
             otherNames: string[];
             transliteratedOtherNames: string[];
             legalAddress: {
-                language: string | null;
+                language?: string;
                 addressLines: string[];
-                addressNumber: string | null;
-                addressNumberWithinBuilding: string | null;
-                mailRouting: string | null;
+                addressNumber?: string;
+                addressNumberWithinBuilding?: string;
+                mailRouting?: string;
                 city: string;
                 region: string;
                 country: string;
                 postalCode: string;
             };
             headquartersAddress: {
-                language: string | null;
+                language?: string;
                 addressLines: string[];
-                addressNumber: string | null;
-                addressNumberWithinBuilding: string | null;
-                mailRouting: string | null;
+                addressNumber?: string;
+                addressNumberWithinBuilding?: string;
+                mailRouting?: string;
                 city: string;
                 region: string;
                 country: string;
@@ -36,27 +34,27 @@ export interface LEIRecord {
             };
             registeredAt: {
                 id: string;
-                other: null;
+                other?: string;
             };
             registeredAs: string;
             jurisdiction: string;
-            category: string | null;
+            category?: string;
             legalForm: {
                 id: string;
-                other: null;
+                other?: string;
             };
             associatedEntity: {
-                lei: string | null;
-                name: string | null;
+                lei?: string;
+                name?: string;
             };
             status: string;
             expiration: {
-                date: string | null;
-                reason: string | null;
+                date?: string;
+                reason?: string;
             };
             successorEntity: {
-                lei: string | null;
-                name: string | null;
+                lei?: string;
+                name?: string;
             };
             otherAddresses: any[]; // Adjust type as per actual structure
         };
@@ -69,7 +67,7 @@ export interface LEIRecord {
             corroborationLevel: string;
             validatedAt: {
                 id: string;
-                other: null;
+                other?: string;
             };
             validatedAs: string;
             otherValidationAuthorities: Array<{

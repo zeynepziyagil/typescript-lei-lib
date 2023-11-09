@@ -1,5 +1,3 @@
-// types/autocompletion.ts
-
 export interface Autocompletion {
     type: string;
     attributes: {

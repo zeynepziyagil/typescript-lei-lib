@@ -1,5 +1,3 @@
-// types/fuzzycompletion.ts
-
 export interface FuzzyCompletion {
     type: string;
     attributes: {
