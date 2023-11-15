@@ -1,8 +1,8 @@
-<<<<<<< HEAD
+
 # typescript-lei-lib
+
+
 API wrapper in  TypeScript for GLEIF(LEI) API for Node &amp; Browsers to be used in Company Service and the Web App. Release it on NPM.
-=======
-# Vite TypeScript NPM Package
 
 Scaffold TypeScript npm packages using this template to bootstrap your next library.
 
