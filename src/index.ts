@@ -21,7 +21,6 @@ export async function getLEIRecordByID(id: string): Promise<LEIRecord> {
   return data;
 }
 
-
 export async function getAutocompletions(field: string, q: string): Promise<Autocompletion[]> {
   const url = `${baseURL}autocompletions?field=${field}&q=${q}`;
   const response = await fetch(url, {
@@ -55,3 +54,7 @@ export async function getFuzzyCompletions(field: string, q: string): Promise<Fuz
   const data = await response.json();
   return data.data;
 }
+
+getLEIRecordByID("789000Q21SW842S9IJ58")
+  .then((data) => { console.log(data) })
+  .catch((error) => console.error(error))
