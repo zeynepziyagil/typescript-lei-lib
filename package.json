@@ -1,7 +1,7 @@
 {
-  "name": "vite-typescript-npm-package",
+  "name": "typescript-lei-lib",
   "version": "1.0.1",
-  "description": "Vite TypeScript library npm package template",
+  "description": "TypeScript GLEIF LEI library npm package ",
   "license": "ISC",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
